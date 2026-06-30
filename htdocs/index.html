@@ -12,7 +12,7 @@
     />
 
     <style>
-           /* 1. DESIGN SYSTEM & TOKENS  */
+      /* 1. DESIGN SYSTEM & TOKENS  */
 
       :root {
         /* Palet Warna Resmi Enjong */
@@ -73,9 +73,7 @@
         transform: translateY(-2px); /* Efek transform hover halus */
       }
 
-      
       /* 2. MOBILE-FIRST LAYOUT (Dasar Tampilan HP) */
-           
 
       /* Navbar Mobile (Tersisa Logo & Tombol Masuk saja) */
       .navbar {
@@ -99,7 +97,6 @@
         gap: 1rem;
       }
 
-      /* Perbaikan Flexbox pada Logo agar Sejajar Horizontal */
       .logo {
         text-decoration: none;
         font-size: 1.5rem;
@@ -170,6 +167,32 @@
         animation: fadeSlideIn 0.8s ease-out 0.4s both; /* Jeda 0.4 detik */
       }
 
+      .hero-title-shiny {
+        color: var(--dark, #2b2b2b);
+       /* untuk buat warna gelap di kiri-kanan (50% & 90%), 
+       dan warna kilat putih di tengah (70%) */
+        background-image: linear-gradient(
+          to right,
+          var(--dark, #2b2b2b) 50%,
+          #ffffff 70%,
+          var(--dark, #2b2b2b) 90%
+        );
+        background-size: 200% auto; /* Memperbesar background biar bisa digeser */
+
+       /* Memotong background agar hanya muncul di dalam bentuk teks */
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: shineEffect 3.5s linear infinite; /* 5. Jalankan Animasi */
+        display: inline-block;/* Tambahan biar efeknya halus */
+      }
+
+      @keyframes shineEffect {
+        to {
+          background-position: 200% center;
+        }
+      }
+
       .hero-desc {
         font-size: clamp(0.96rem, 2vw, 1.05rem);
         color: #555;
@@ -195,7 +218,7 @@
         will-change: transform; /* Optimasi GPU */
       }
 
-     /* KEYFRAMES ANIMASI (Sesuai Bab 4 & 5 Modul 11) */ 
+      /* KEYFRAMES ANIMASI */
 
       /* Animasi 1: Melayang Otomatis Berulang */
       @keyframes float {
@@ -235,8 +258,8 @@
         font-size: 0.85rem;
       }
 
-     /*  3. RESPONSIVE MEDIA QUERIES (Untuk Layar Desktop / Laptop) */
-    
+      /*RESPONSIVE MEDIA QUERIES (Untuk Layar Desktop / Laptop) */
+
       @media (min-width: 768px) {
         .hero-container {
           display: grid;
@@ -246,8 +269,8 @@
         }
 
         .hero-content {
-            text-align: left;
-            align-items: flex-start;
+          text-align: left;
+          align-items: flex-start;
         }
       }
     </style>
@@ -273,7 +296,8 @@
         <div class="hero-content">
           <p class="hero-tagline">Authentically Banyuwangi</p>
           <h1 class="hero-title">
-            Kehangatan Tradisi Lokal dalam Setiap Gigitan
+            Kehangatan <span class="hero-title-shiny">Tradisi Lokal</span> dalam
+            Setiap Gigitan
           </h1>
           <p class="hero-desc">
             Nikmati kelezatan Bagiak otentik dan Sale Pisang pilihan terbaik
