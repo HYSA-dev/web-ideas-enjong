@@ -4,27 +4,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Masuk - Ideas Enjong</title>
-    <!-- Google Fonts: Poppins (Struktur) & Dancing Script (Dekoratif) Sesuai GSM -->
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     
     <style>
-        /* ==========================================================================
-           1. DESIGN SYSTEM & TOKENS (Sesuai GSM Ideas Enjong)
-           ========================================================================== */
+        @keyframes bookEntrance {
+            0% {
+                opacity: 0;
+                transform: scale(0.95) rotate(-1deg) translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) rotate(0deg) translateY(0);
+            }
+        }
+
+        @keyframes floatLogo {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-6px) rotate(3deg); }
+            100% { transform: translateY(0) rotate(0deg); }
+        }
+
+        @keyframes textWarmth {
+            0% { text-shadow: 0 0 0px rgba(245, 194, 0, 0); }
+            50% { text-shadow: 0 0 15px rgba(245, 194, 0, 0.3); }
+            100% { text-shadow: 0 0 0px rgba(245, 194, 0, 0); }
+        }
+
+        @keyframes honeyGlow {
+            0% { left: -150%; }
+            50% { left: 150%; }
+            100% { left: 150%; }
+        }
+
+        @keyframes contentFadeUp {
+            0% {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         :root {
             --primary-red: #C8102E;
             --accent-gold: #F5C200;
             --warm-yellow: #FFE066;
             --charcoal: #1A1A1A;
             --white: #FFFFFF;
-            --gray-border: #D0C3B0; /* Warna border kecokelatan senada kertas jadul */
+            --gray-border: #D0C3B0; 
             --font-primary: 'Poppins', sans-serif;
             --font-accent: 'Dancing Script', cursive;
         }
 
-        /* Base Reset */
         * {
             margin: 0;
             padding: 0;
@@ -35,15 +71,11 @@
             font-family: var(--font-primary);
             color: var(--charcoal);
             line-height: 1.6;
-            
-            /* CENTERING CONTAINER */
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             padding: 1.5rem;
-            
-            /* BACKGROUND GAMBAR RUSTIC (Referensi: image_959bd4.jpg / Gambar Tanpa Watermark Kamu) */
             background-image: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)), url('image_959bd4.jpg');
             background-size: cover;
             background-position: center;
@@ -51,28 +83,19 @@
             background-attachment: fixed;
         }
 
-        /* ==========================================================================
-           2. TATA LETAK BUKU RESPONSIF (Menggunakan CSS Grid & Mobile-First)
-           ========================================================================== */
-        
-        /* Kontainer Utama Buku */
         .book-container {
             width: 100%;
-            max-width: 760px; /* Lebar ideal buku terbuka di desktop */
-            background-color: #F4EAD4; /* Warna kertas kuno/parchment hangat */
+            max-width: 760px; 
+            background-color: #F4EAD4; 
             border-radius: 12px;
             box-shadow: 0 30px 60px rgba(0,0,0,0.4), inset 0 0 40px rgba(0,0,0,0.1);
-            border: 8px solid #5C4033; /* Bingkai luar cokelat kayu gelap */
-            
+            border: 8px solid #5C4033; 
             display: grid;
-            grid-template-columns: 1fr; /* Default 1 halaman penuh di mobile */
+            grid-template-columns: 1fr; 
             position: relative;
-            
-            /* Animasi Masuk Halus */
-            animation: bookEntrance 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+            animation: bookEntrance 1s cubic-bezier(0.16, 1, 0.3, 1) both;
         }
 
-        /* Pembatas Tengah Buku (Garis Lipatan Buku Jilid) */
         .book-spine {
             display: none;
             position: absolute;
@@ -84,7 +107,6 @@
             z-index: 5;
         }
 
-        /* Style Global Halaman Buku (Kiri & Kanan) */
         .book-page {
             padding: 3rem 2rem;
             display: flex;
@@ -94,10 +116,9 @@
             position: relative;
         }
 
-        /* HALAMAN KIRI: Konten Promosi/Tagline Emosional GSM */
         .page-left {
             text-align: center;
-            border-bottom: 2px dashed rgba(0,0,0,0.1); /* Batas halaman di mobile */
+            border-bottom: 2px dashed rgba(0,0,0,0.1); 
         }
 
         .page-left h1 {
@@ -106,6 +127,7 @@
             font-size: 3rem;
             line-height: 1.2;
             margin-bottom: 1rem;
+            animation: textWarmth 4s ease-in-out infinite;
         }
 
         .page-left p {
@@ -115,9 +137,16 @@
             letter-spacing: 0.5px;
         }
 
-        /* HALAMAN KANAN: Tempat Form Login Berada */
         .page-right {
-            background-color: #F2E5CE; /* Efek gradasi warna kertas kanan sedikit beda */
+            background-color: #F2E5CE;
+        }
+
+        .login-container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: contentFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
         }
 
         .login-header {
@@ -129,6 +158,7 @@
             width: 65px;
             height: auto;
             margin-bottom: 0.5rem;
+            animation: floatLogo 4s ease-in-out infinite;
         }
 
         .login-header h2 {
@@ -138,7 +168,6 @@
             letter-spacing: -0.5px;
         }
 
-        /* Komponen Form */
         form {
             width: 100%;
             max-width: 290px;
@@ -154,6 +183,7 @@
             font-weight: 700;
             margin-bottom: 0.25rem;
             color: #5C4033;
+            transition: color 0.3s ease;
         }
 
         .form-group input {
@@ -166,17 +196,20 @@
             background-color: rgba(255, 255, 255, 0.6);
             outline: none;
             color: var(--charcoal);
-            transition: all 0.25s ease;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        /* Efek Fokus Input Klasik Menawan */
         .form-group input:focus {
             border-color: var(--primary-red);
             background-color: #FFFFFF;
-            box-shadow: 0 0 0 3px rgba(200, 16, 46, 0.1);
+            box-shadow: 0 0 0 3px rgba(200, 16, 46, 0.15);
+            transform: translateY(-1px);
         }
 
-        /* Tombol Masuk Berwarna Merah Enjong Sesuai GSM */
+        .form-group input:focus + label {
+            color: var(--primary-red);
+        }
+
         .btn-login {
             width: 100%;
             padding: 0.8rem;
@@ -189,16 +222,32 @@
             font-weight: 600;
             cursor: pointer;
             margin-top: 0.5rem;
-            transition: all 0.25s ease-in-out;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .btn-login::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -150%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(245, 194, 0, 0.4), transparent);
+            animation: honeyGlow 4s infinite ease-in-out;
         }
 
         .btn-login:hover {
             background-color: #A00D24;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(200, 16, 46, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(200, 16, 46, 0.35);
         }
 
-        /* Link Kembali */
+        .btn-login:active {
+            transform: translateY(-1px);
+        }
+
         .back-to-home {
             display: inline-block;
             width: 100%;
@@ -208,42 +257,27 @@
             color: #5C4033;
             text-decoration: none;
             font-weight: 600;
-            transition: color 0.2s ease;
+            transition: all 0.25s ease;
         }
 
         .back-to-home:hover {
             color: var(--primary-red);
+            transform: translateX(-3px);
         }
 
-        /* KEYFRAMES ANIMASI */
-        @keyframes bookEntrance {
-            from {
-                opacity: 0;
-                transform: scale(0.9) translateY(40px);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1) translateY(0);
-            }
-        }
-
-        /* ==========================================================================
-           3. RESPONSIVE DESKTOP LAYOUT (Buku Terbuka Belah Dua Kiri-Kanan)
-           ========================================================================== */
         @media (min-width: 768px) {
             .book-container {
-                /* Mengaktifkan tata letak 2 dimensi (2 Kolom Sejajar) Sesuai Bab 3 */
                 grid-template-columns: 1fr 1fr; 
                 min-height: 480px;
             }
 
             .book-spine {
-                display: block; /* Garis jilid tengah buku muncul di desktop */
+                display: block; 
             }
 
             .page-left {
                 border-bottom: none;
-                border-right: 1px solid rgba(0,0,0,0.05); /* Batas halus antar halaman */
+                border-right: 1px solid rgba(0,0,0,0.05); 
                 padding: 3rem;
             }
 
@@ -255,31 +289,27 @@
 </head>
 <body>
 
-    <!-- STRUKTUR BUKU TERBUKA KREATIF -->
     <div class="book-container">
-        <!-- Garis Lipatan Tengah Buku -->
+        
         <div class="book-spine"></div>
         
-        <!-- HALAMAN KIRI: RUANG DEKORATIF BRAND KULINER -->
         <div class="book-page page-left">
             <h1>Cita Rasa<br>Nusantara</h1>
             <p>Authentically Banyuwangi</p>
         </div>
 
-        <!-- HALAMAN KANAN: KONTEN UTAMA FORM LOGIN -->
         <div class="book-page page-right">
             <div class="login-container">
-                <!-- HEADER FORM -->
-                <div class="login-header">
-                    <img src="logo_login.png" alt="Logo Ideas Enjong" class="login-logo">
+                
+                <div class="/login-header">
+                    <!-- <img src="logo_login.png" alt="Logo Ideas Enjong" class="login-logo"> -->
                     <h2>Selamat Datang</h2>
                 </div>
 
-                <!-- FORM INPUT -->
-                <form action="#" method="POST">
+                <form action="login_process" method="POST">
                     <div class="form-group">
-                        <label for="username">Nama Pengguna / Email</label>
-                        <input type="text" id="username" name="username" placeholder="Email Anda" required autocomplete="off">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" name="username" placeholder="Username" required>
                     </div>
 
                     <div class="form-group">
@@ -287,11 +317,9 @@
                         <input type="password" id="password" name="password" placeholder="Kata sandi Anda" required>
                     </div>
 
-                    <!-- TOMBOL MASUK -->
                     <button type="submit" class="btn-login">Masuk</button>
                 </form>
 
-                <!-- KEMBALI KE BERANDA -->
                 <a href="index.html" class="back-to-home">&larr; Kembali ke Beranda</a>
             </div>
         </div>
